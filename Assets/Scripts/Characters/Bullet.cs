@@ -3,8 +3,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour, IInteractable
 {
     [SerializeField] private float _speed = 10f;
+    [SerializeField] private float _lifetime = 2f;
 
     private Vector2 _direction;
+
+    private void Start()
+    {
+        Destroy(gameObject, _lifetime);
+    }
 
     private void Update()
     {

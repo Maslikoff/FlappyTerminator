@@ -1,5 +1,4 @@
 using System;
-using UnityEngine.SceneManagement;
 
 public class EndScreen : Window
 {
@@ -20,17 +19,5 @@ public class EndScreen : Window
     protected override void OnButtonClick()
     {
         RestartButtonClicked?.Invoke();
-        ClearAllBulletsBeforeRestart();
-    }
-
-    private void ClearAllBulletsBeforeRestart()
-    {
-        Bullet[] bullets = FindObjectsOfType<Bullet>();
-
-        if (bullets.Length == 0)
-            return;
-
-        foreach (Bullet bullet in bullets)
-            Destroy(bullet.gameObject);
     }
 }

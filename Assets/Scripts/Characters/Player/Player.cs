@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     private PlayerMover _playerMover;
     private ScoreCounter _scoreCounter;
-    private PlayerCollisionHandler _handler;
+    private CharacterCollisionHandler _handler;
 
     public event Action GameOver;
 
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     {
         _playerMover = GetComponent<PlayerMover>();
         _scoreCounter = GetComponent<ScoreCounter>();
-        _handler = GetComponent<PlayerCollisionHandler>();
+        _handler = GetComponent<CharacterCollisionHandler>();
     }
 
     private void OnEnable()
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     private void ProcessCollision(IInteractable interactable)
     {
-        if (interactable is Bullet || interactable is Enemy)
+        if (interactable is Bullet || interactable is Enemy || interactable is Ground)
             GameOver?.Invoke();
         else if (interactable is ScoreZone)
             _scoreCounter.Add();

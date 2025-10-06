@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerCollisionHandler : MonoBehaviour
+public class CharacterCollisionHandler : MonoBehaviour
 {
     public event Action<IInteractable> CollisionDetected;
 
