@@ -4,11 +4,11 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] private Transform _container;
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] private Enemy _prefab;
 
-    private Queue<GameObject> _pool;
+    private Queue<Enemy> _pool;
 
-    public IEnumerable<GameObject> PooledObjects => _pool;
+    public IEnumerable<Enemy> PooledObjects => _pool;
 
     public void Reset()
     {
@@ -17,25 +17,25 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
-        _pool = new Queue<GameObject>();
+        _pool = new Queue<Enemy>();
     }
 
-    public GameObject GetObject()
+    public Enemy GetObject()
     {
         if (_pool.Count == 0)
         {
-            var objects = Instantiate(_prefab);
-            objects.transform.parent = _container;
+            Enemy enemys = Instantiate(_prefab);
+            enemys.transform.parent = _container;
 
-            return objects;
+            return enemys;
         }
 
         return _pool.Dequeue();
     }
 
-    public void PutObject(GameObject objects)
+    public void PutObject(Enemy enemys)
     {
-        _pool.Enqueue(objects);
-        objects.gameObject.SetActive(false);
+        _pool.Enqueue(enemys);
+        enemys.gameObject.SetActive(false);
     }
 }

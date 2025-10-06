@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 1082038245}
   - component: {fileID: 1082038246}
   - component: {fileID: 1082038244}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Remover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1025,7 +1025,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.13, y: 7.26}
+  m_Size: {x: 2.13, y: 25.26}
   m_EdgeRadius: 0
 --- !u!50 &1082038246
 Rigidbody2D:
@@ -1064,6 +1064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1198196282}
   - component: {fileID: 1198196284}
+  - component: {fileID: 1198196285}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -1132,6 +1133,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1198196285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198196281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a4b11063c11a64091f9409a654fa85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1540105699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 526671348}
-  _prefab: {fileID: 1204105023372119094, guid: 349016d998e28af47a06df833bae81c8, type: 3}
+  _prefab: {fileID: 6851346002926484904, guid: d3944e3e53426eb498322cc7900c4236, type: 3}
 --- !u!1 &1561285632
 GameObject:
   m_ObjectHideFlags: 0

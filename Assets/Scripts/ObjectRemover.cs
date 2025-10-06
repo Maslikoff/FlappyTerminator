@@ -7,7 +7,7 @@ public class ObjectRemover : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<Enemy>(out var enemys))
-            _pool.PutObject(enemys.gameObject);
+            _pool.PutObject(enemys);
 
         if (collision.TryGetComponent<Bullet>(out var bullet))
             Destroy(bullet.gameObject);

@@ -4,6 +4,8 @@ public class Enemy : MonoBehaviour, IInteractable
 {
     private CharacterCollisionHandler _handler;
 
+    [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
+
     private void Awake()
     {
         _handler = GetComponent<CharacterCollisionHandler>();
