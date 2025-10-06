@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     private void ProcessCollision(IInteractable interactable)
     {
-        if (interactable is Bullet)
+        if (interactable is Bullet || interactable is Enemy)
             GameOver?.Invoke();
         else if (interactable is ScoreZone)
             _scoreCounter.Add();
