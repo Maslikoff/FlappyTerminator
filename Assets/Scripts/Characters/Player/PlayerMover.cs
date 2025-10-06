@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -13,27 +14,24 @@ public class PlayerMover : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Quaternion _maxRotation;
     private Quaternion _minRotation;
+    private InputReader _inputReader;
 
     private void Start()
     {
         _startPosition = transform.position;
 
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _inputReader = GetComponent<InputReader>();
 
         _maxRotation = Quaternion.Euler(0, 0, _maxRotationZ);
         _minRotation = Quaternion.Euler(0, 0, _minRotationZ);
 
+        _inputReader.FlappyPressed += Flappy;
         Reset();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _rigidbody2D.velocity = new Vector2(_speed, _tapFarce);
-            transform.rotation = _maxRotation;
-        }
-
         transform.rotation = Quaternion.Lerp(transform.rotation, _minRotation, _rotationSpeed * Time.deltaTime);
     }
 
@@ -42,5 +40,23 @@ public class PlayerMover : MonoBehaviour
         transform.position = _startPosition;
         transform.rotation = Quaternion.identity;
         _rigidbody2D.velocity = Vector2.zero;
+    }
+
+    private void OnEnable()
+    {
+        if (_inputReader != null)
+            _inputReader.FlappyPressed += Flappy;
+    }
+
+    private void OnDestroy()
+    {
+        if (_inputReader != null)
+            _inputReader.FlappyPressed -= Flappy;
+    }
+
+    private void Flappy()
+    {
+        _rigidbody2D.velocity = new Vector2(_speed, _tapFarce);
+        transform.rotation = _maxRotation;
     }
 }
