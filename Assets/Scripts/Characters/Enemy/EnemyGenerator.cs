@@ -32,6 +32,6 @@ public class EnemyGenerator : MonoBehaviour
         var enemy = _pool.GetObject();
 
         enemy.gameObject.SetActive(true);
-        enemy.Rigidbody.position = spawnPoint;
+        enemy.Rigidbody.transform.position = spawnPoint;
     }
 }

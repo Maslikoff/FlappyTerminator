@@ -3,12 +3,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IInteractable
 {
     private CharacterCollisionHandler _handler;
+    private ScoreCounter _scoreCounter;
 
     [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
 
     private void Awake()
     {
         _handler = GetComponent<CharacterCollisionHandler>();
+        _scoreCounter = FindObjectOfType<ScoreCounter>();
     }
 
     private void OnEnable()
@@ -24,6 +26,9 @@ public class Enemy : MonoBehaviour, IInteractable
     private void ProcessCollision(IInteractable interactable)
     {
         if (interactable is Bullet)
+        {
             Destroy(gameObject);
+            _scoreCounter.Add();
+        }
     }
 }
