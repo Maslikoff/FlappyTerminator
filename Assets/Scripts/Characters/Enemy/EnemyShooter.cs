@@ -10,11 +10,6 @@ public class EnemyShooter : Shooter
     private Coroutine _shootCoroutine;
     private WaitForSeconds _wait;
 
-    private void Start()
-    {
-        _shootCoroutine = StartCoroutine(ShootRoutine());
-    }
-
     private void OnEnable()
     {
         if (_shootCoroutine != null)
@@ -32,6 +27,11 @@ public class EnemyShooter : Shooter
         }
     }
 
+    private void Start()
+    {
+        _shootCoroutine = StartCoroutine(ShootRoutine());
+    }
+
     private IEnumerator ShootRoutine()
     {
         float delay = Random.Range(_shootDelay.x, _shootDelay.y);
@@ -41,7 +41,7 @@ public class EnemyShooter : Shooter
         {
             yield return _wait;
 
-            Shoot(Vector2.up, _rotationZ);
+            Shoot(Vector2.left, _rotationZ);
         }
     }
 }

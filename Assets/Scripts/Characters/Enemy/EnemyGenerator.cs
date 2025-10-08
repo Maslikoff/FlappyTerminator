@@ -20,6 +20,7 @@ public class EnemyGenerator : MonoBehaviour
         while (enabled)
         {
             Spawn();
+
             yield return wait;
         }
     }
@@ -27,11 +28,11 @@ public class EnemyGenerator : MonoBehaviour
     private void Spawn()
     {
         float spawnPositionY = Random.Range(_lowerBound, _upperBound);
-        Vector3 spawnPoint = new Vector3(transform.position.x, spawnPositionY, transform.position.z);
+        Vector3 spawnPoint = new Vector3(transform.position.x, spawnPositionY, 0);
 
         var enemy = _pool.GetObject();
 
-        enemy.gameObject.SetActive(true);
-        enemy.Rigidbody.transform.position = spawnPoint;
+        enemy.SetActive(true);
+        enemy.transform.position = spawnPoint;
     }
 }

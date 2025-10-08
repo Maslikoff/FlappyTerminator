@@ -3,39 +3,58 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    [SerializeField] private int _initialSize = 10;
     [SerializeField] private Transform _container;
-    [SerializeField] private Enemy _prefab;
+    [SerializeField] private GameObject _prefab;
+    [SerializeField] private Queue<GameObject> _pool;
 
-    private Queue<Enemy> _pool;
-
-    public IEnumerable<Enemy> PooledObjects => _pool;
+    public IEnumerable<GameObject> PooledObjects => _pool;
 
     public void Reset()
     {
         _pool.Clear();
+        InitializePool();
     }
 
     private void Awake()
     {
-        _pool = new Queue<Enemy>();
+        _pool = new Queue<GameObject>();
+
+        InitializePool();
     }
 
-    public Enemy GetObject()
+    public GameObject GetObject()
     {
         if (_pool.Count == 0)
-        {
-            Enemy enemys = Instantiate(_prefab);
-            enemys.transform.parent = _container;
-
-            return enemys;
-        }
+            return CreateNewObject();
 
         return _pool.Dequeue();
     }
 
-    public void PutObject(Enemy enemys)
+    public void PutObject(GameObject objects)
     {
-        _pool.Enqueue(enemys);
-        enemys.gameObject.SetActive(false);
+        objects.gameObject.SetActive(false);
+
+        objects.transform.position = Vector3.zero;
+        objects.transform.rotation = Quaternion.identity;
+
+        _pool.Enqueue(objects);
+    }
+
+    private void InitializePool()
+    {
+        for (int i = 0; i < _initialSize; i++)
+            CreateNewObject();
+    }
+
+    private GameObject CreateNewObject()
+    {
+        GameObject newObject = _container != null ?
+            Instantiate(_prefab, _container) :
+            Instantiate(_prefab);
+
+        newObject.SetActive(false);
+        _pool.Enqueue(newObject);
+        return newObject;
     }
 }

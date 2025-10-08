@@ -1,10 +1,10 @@
 using UnityEngine;
 
+[RequireComponent(typeof(InputReader))]
 public class PlayerShooter : Shooter
 {
-    [SerializeField] private float _rotationZ = -90;
-
     private InputReader _inputReader;
+    private float _angleDifference = 90f;
 
     private void Awake()
     {
@@ -25,6 +25,9 @@ public class PlayerShooter : Shooter
 
     private void ShootBullet()
     {
-        Shoot(Vector2.up, _rotationZ);
+        Vector3 direction = _shootPoint.right;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        Shoot(direction, angle - _angleDifference);
     }
 }

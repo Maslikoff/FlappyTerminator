@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(InputReader))]
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _tapFarce;
@@ -15,6 +16,18 @@ public class PlayerMover : MonoBehaviour
     private Quaternion _maxRotation;
     private Quaternion _minRotation;
     private InputReader _inputReader;
+
+    private void OnEnable()
+    {
+        if (_inputReader != null)
+            _inputReader.FlappyPressed += Flappy;
+    }
+
+    private void OnDestroy()
+    {
+        if (_inputReader != null)
+            _inputReader.FlappyPressed -= Flappy;
+    }
 
     private void Start()
     {
@@ -40,18 +53,6 @@ public class PlayerMover : MonoBehaviour
         transform.position = _startPosition;
         transform.rotation = Quaternion.identity;
         _rigidbody2D.velocity = Vector2.zero;
-    }
-
-    private void OnEnable()
-    {
-        if (_inputReader != null)
-            _inputReader.FlappyPressed += Flappy;
-    }
-
-    private void OnDestroy()
-    {
-        if (_inputReader != null)
-            _inputReader.FlappyPressed -= Flappy;
     }
 
     private void Flappy()

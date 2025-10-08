@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 6199329878377389559}
   - component: {fileID: -7470695674820218044}
   - component: {fileID: -914262782694380941}
+  - component: {fileID: -1342245373058250166}
   - component: {fileID: 2448444468024868597}
   - component: {fileID: 6851346002926484904}
-  - component: {fileID: -1342245373058250166}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -183,6 +183,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.13129841, y: -0.09305608}
   m_Size: {x: 1.2379756, y: 1.2379756}
   m_Direction: 0
+--- !u!114 &-1342245373058250166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611948758822334930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adcdbe8089d65874f855971925d10f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2448444468024868597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 7762559977805782201, guid: e152447307d69724891d89448b140474, type: 3}
   _shootPoint: {fileID: 5697008515533045613}
+  _bulletPool: {fileID: 807300823918640688, guid: 9ff15b52f7f48a442adf9c88f73c82a2, type: 3}
   _shootDelay: {x: 1, y: 3}
   _rotationZ: 90
 --- !u!114 &6851346002926484904
@@ -211,16 +224,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe6bf6095cf0b04baaaa50ec44a47b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Rigidbody>k__BackingField: {fileID: -7470695674820218044}
---- !u!114 &-1342245373058250166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7611948758822334930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adcdbe8089d65874f855971925d10f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _scoreCounter: {fileID: 4465855890761495448, guid: 2e80c08dea2979c49a28cb393f9b4f45, type: 3}

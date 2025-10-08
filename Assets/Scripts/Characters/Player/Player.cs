@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMover))]
+[RequireComponent(typeof(ScoreCounter))]
+[RequireComponent(typeof(CharacterCollisionHandler))]
 public class Player : MonoBehaviour
 {
     private PlayerMover _playerMover;

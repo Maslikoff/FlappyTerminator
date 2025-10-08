@@ -145,3 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _lifetime: 2
+  _pool: {fileID: 0}
