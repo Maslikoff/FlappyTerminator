@@ -232,9 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a73bc03a84a7746a91a9b1fab4b06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 7762559977805782201, guid: e152447307d69724891d89448b140474, type: 3}
   _shootPoint: {fileID: 5015404900150538113}
-  _bulletPool: {fileID: 807300823918640688, guid: 9ff15b52f7f48a442adf9c88f73c82a2, type: 3}
+  _bulletPool: {fileID: 4495808640790674092}
 --- !u!1 &8242450256842988913
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5015404900150538113}
+  - component: {fileID: 4495808640790674092}
   m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
@@ -266,3 +266,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1748894688574523028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4495808640790674092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8242450256842988913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56ec2fdee03d494daeb558d0b009e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialSize: 10
+  _container: {fileID: 2288469833175736720, guid: be5bd2ba2eb2e5d49adc24fbd3bc63de, type: 3}
+  _prefab: {fileID: 7762559977805782201, guid: e152447307d69724891d89448b140474, type: 3}

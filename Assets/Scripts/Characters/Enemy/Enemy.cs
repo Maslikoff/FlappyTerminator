@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterCollisionHandler))]
-public class Enemy : MonoBehaviour, IInteractable
+public class Enemy : MonoBehaviour, IInteractable, IDestroyable
 {
-    [SerializeField] private ScoreCounter _scoreCounter;
-
     private CharacterCollisionHandler _handler;
+
+    public event Action<Enemy> Destroyed;
 
     private void Awake()
     {
@@ -14,20 +15,23 @@ public class Enemy : MonoBehaviour, IInteractable
 
     private void OnEnable()
     {
-        _handler.CollisionDetected += ProcessCollision;
+        _handler.CollisionDetected += OnProcessCollision;
     }
 
     private void OnDisable()
     {
-        _handler.CollisionDetected -= ProcessCollision;
+        _handler.CollisionDetected -= OnProcessCollision;
     }
 
-    private void ProcessCollision(IInteractable interactable)
+    public void Destroy()
+    {
+        Destroyed?.Invoke(this);
+        gameObject.SetActive(false);
+    }
+
+    private void OnProcessCollision(IInteractable interactable)
     {
         if (interactable is Bullet)
-        {
-            Destroy(gameObject);
-            _scoreCounter?.Add();
-        }
+            Destroy();
     }
 }

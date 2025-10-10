@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5697008515533045613}
+  - component: {fileID: 6696559722232503104}
   m_Layer: 7
   m_Name: ShootPoint
   m_TagString: Untagged
@@ -26,6 +27,52 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.347, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 636888230242247234}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6696559722232503104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448080303242610907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56ec2fdee03d494daeb558d0b009e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialSize: 10
+  _container: {fileID: 5333144250518847208}
+  _prefab: {fileID: 7762559977805782201, guid: e152447307d69724891d89448b140474, type: 3}
+--- !u!1 &4544586798103951981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5333144250518847208}
+  m_Layer: 7
+  m_Name: BulletMagazine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5333144250518847208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544586798103951981}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67,6 +114,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5697008515533045613}
+  - {fileID: 5333144250518847208}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6199329878377389559
@@ -207,9 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f917046964a0241a473a75afb9bdca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 7762559977805782201, guid: e152447307d69724891d89448b140474, type: 3}
   _shootPoint: {fileID: 5697008515533045613}
-  _bulletPool: {fileID: 807300823918640688, guid: 9ff15b52f7f48a442adf9c88f73c82a2, type: 3}
+  _bulletPool: {fileID: 6696559722232503104}
   _shootDelay: {x: 1, y: 3}
   _rotationZ: 90
 --- !u!114 &6851346002926484904
