@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, IInteractable, IDestroyable
     private CharacterCollisionHandler _handler;
 
     public event Action<Enemy> Destroyed;
+    public event Action<Enemy> Killed;
 
     private void Awake()
     {
@@ -32,6 +33,9 @@ public class Enemy : MonoBehaviour, IInteractable, IDestroyable
     private void OnProcessCollision(IInteractable interactable)
     {
         if (interactable is Bullet)
+        {
             Destroy();
+            Killed?.Invoke(this);
+        }
     }
 }

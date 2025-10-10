@@ -8,7 +8,6 @@ public class Bullet : MonoBehaviour, IInteractable, IDestroyable
     [SerializeField] private float _lifetime = 3f;
 
     public event Action<Bullet> Destroyed;
-    public event Action<Enemy> EnemyHit;
 
     private Vector2 _direction;
     private Coroutine _lifeCoroutine;
@@ -20,15 +19,7 @@ public class Bullet : MonoBehaviour, IInteractable, IDestroyable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Enemy>(out var enemy))
-        {
-            EnemyHit?.Invoke(enemy);
-            Destroy();
-        }
-        else
-        {
-            Destroy();
-        }
+        Destroy();
     }
 
     public void SetDirection(Vector2 direction, float rotationZ)

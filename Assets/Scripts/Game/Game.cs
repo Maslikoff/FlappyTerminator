@@ -3,6 +3,7 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private ScoreCounter _scoreCounter;
     [SerializeField] private EnemyGenerator _enemyGenerator;
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private EndScreen _endScreen;
@@ -11,6 +12,7 @@ public class Game : MonoBehaviour
     {
         _startScreen.PlayButtonClicked += OnPlayButtonClick;
         _endScreen.RestartButtonClicked += OnRestartButtonClick;
+        _enemyGenerator.EnemyKilled += OnEnemyKilled;
         _player.GameOver += OnGameOver;
     }
 
@@ -18,6 +20,7 @@ public class Game : MonoBehaviour
     {
         _startScreen.PlayButtonClicked -= OnPlayButtonClick;
         _endScreen.RestartButtonClicked -= OnRestartButtonClick;
+        _enemyGenerator.EnemyKilled -= OnEnemyKilled;
         _player.GameOver -= OnGameOver;
     }
 
@@ -50,5 +53,10 @@ public class Game : MonoBehaviour
         Time.timeScale = 1;
         _player.Reset();
         _enemyGenerator.ResetGenerator();
+    }
+
+    private void OnEnemyKilled(Enemy enemy)
+    {
+        _scoreCounter?.Add();
     }
 }

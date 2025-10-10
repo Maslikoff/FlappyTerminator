@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,27 +16,21 @@ public class EnemyGenerator : MonoBehaviour
     private List<Enemy> _currentSpawnedEnemies = new List<Enemy>();
     private Coroutine _spawnCoroutine;
 
+    public event Action<Enemy> EnemyKilled;
+
     private void Start()
     {
-        StartCoroutine(GenerateEnemies());
+        StartSpawning();
     }
 
     private void OnDisable()
     {
-        if (_spawnCoroutine != null)
-        {
-            StopCoroutine(_spawnCoroutine);
-            _spawnCoroutine = null;
-        }
+        StopSpawning();
     }
 
     public void ResetGenerator()
     {
-        if (_spawnCoroutine != null)
-        {
-            StopCoroutine(_spawnCoroutine);
-            _spawnCoroutine = null;
-        }
+        StopSpawning();
 
         foreach (Enemy enemy in _currentSpawnedEnemies)
         {
@@ -47,7 +42,24 @@ public class EnemyGenerator : MonoBehaviour
         }
         _currentSpawnedEnemies.Clear();
 
+        StartSpawning();
+    }
+
+    public void StartSpawning()
+    {
+        if (_spawnCoroutine != null)
+            StopCoroutine(_spawnCoroutine);
+
         _spawnCoroutine = StartCoroutine(GenerateEnemies());
+    }
+
+    private void StopSpawning()
+    {
+        if (_spawnCoroutine != null)
+        {
+            StopCoroutine(_spawnCoroutine);
+            _spawnCoroutine = null;
+        }
     }
 
     private IEnumerator GenerateEnemies()
@@ -70,7 +82,7 @@ public class EnemyGenerator : MonoBehaviour
 
         while (spawnedCount < _enemiesPerSpawn && attempts < maxAttempts)
         {
-            float spawnPositionY = Random.Range(_lowerBound, _upperBound);
+            float spawnPositionY = UnityEngine.Random.Range(_lowerBound, _upperBound);
 
             if (IsTooCloseToAnyEnemy(spawnPositionY) == false)
             {
@@ -95,6 +107,7 @@ public class EnemyGenerator : MonoBehaviour
 
         enemy.transform.position = spawnPoint;
         enemy.Destroyed += OnEnemyDestroyed;
+        enemy.Killed += OnEnemyKilled;
         _currentSpawnedEnemies.Add(enemy);
     }
 
@@ -120,9 +133,16 @@ public class EnemyGenerator : MonoBehaviour
         return false;
     }
 
+    private void OnEnemyKilled(Enemy enemy)
+    {
+        EnemyKilled?.Invoke(enemy);
+        OnEnemyDestroyed(enemy);
+    }
+
     private void OnEnemyDestroyed(Enemy enemy)
     {
         enemy.Destroyed -= OnEnemyDestroyed;
+        enemy.Killed -= OnEnemyKilled;
         _currentSpawnedEnemies.Remove(enemy);
     }
 }
